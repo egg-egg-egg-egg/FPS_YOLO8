@@ -1,0 +1,6 @@
+ultralytics 
+mss 
+opencv-python 
+pyautogui
+pyqt5
+keyboard
