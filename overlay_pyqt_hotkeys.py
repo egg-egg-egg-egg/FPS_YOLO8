@@ -187,19 +187,20 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
 
     selector = RegionSelector()
-    # 用一个容器保存引用，防止被回收
-    windows = {}
+    windows = {}  # 保存引用
 
     def start_overlay(region):
         model = YOLO("yolov8n.pt")
         overlay = OverlayWindow(region, model)
-        # 保存引用
         overlay.show()
+        # 保存引用防止被回收
         windows['overlay'] = overlay
         selector.deleteLater()
 
     selector.region_selected.connect(start_overlay)
+
     sys.exit(app.exec_())
+
 
 
 if __name__ == "__main__":
