@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>FPS Pointer Lock Demo</title>
+<style>
+  body, html { margin:0; height:100%; overflow:hidden; background:black; color:white; }
+  #crosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+  }
+</style>
+</head>
+<body>
+<div id="crosshair">+</div>
+<p style="position:absolute;top:10px;left:10px;">点击页面进入 Pointer Lock 模式</p>
+
+<script>
+let x = window.innerWidth/2, y = window.innerHeight/2;
+const ch = document.getElementById('crosshair');
+
+document.body.addEventListener('click', () => {
+    document.body.requestPointerLock();
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (document.pointerLockElement) {
+        x += e.movementX;
+        y += e.movementY;
+        ch.style.left = x + 'px';
+        ch.style.top = y + 'px';
+    }
+});
+
+// 提供一个模拟 API，允许页面内部触发“准星移动”
+window.simulateMove = function(dx, dy) {
+    x += dx;
+    y += dy;
+    ch.style.left = x + 'px';
+    ch.style.top = y + 'px';
+};
+</script>
+</body>
+</html>

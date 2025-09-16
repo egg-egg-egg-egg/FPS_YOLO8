@@ -1,7 +1,6 @@
 import itertools as it
 import functools as ft
 import time
-from ctypes import windll
 def FPS(func):
     @ft.wraps(func)
     def agument(*args,**kwargs):
@@ -18,4 +17,4 @@ if __name__ == "__main__":
     # timepair = sp(1)
     # for i in timepair:
     #     print(i)
-    windll.user32
+    pass
